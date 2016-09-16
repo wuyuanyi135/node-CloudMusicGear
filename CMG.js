@@ -5,7 +5,7 @@ const serversList = require('./serversList');
 const Config = {
     PlaybackQuality: "HQ / 320000",
     DownloadQuality: "HQ / 320000",
-    ForceIp : 0,
+    ForceIp : 1,
     IpAddress: serversList.activeList[0],
     IpAddressList: serversList.activeList
 
@@ -286,8 +286,8 @@ function onResponse(res, body, client) {
             }
         }
     } else {
-        if (res.statusCode >= 400 && path.indexOf(".mp3") !== -1)
-        {
+        if (res.statusCode >= 400 && path.indexOf(".mp3") !== -1) {
+            LogEntry(`Song load failed from ${Config.IpAddress}`);
             if (Config.ForceIp)
             {
                 var ipIndex = null;
