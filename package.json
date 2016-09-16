@@ -4,6 +4,7 @@
   "description": "A node port of https://github.com/EraserKing/CloudMusicGear",
   "main": "index.js",
   "scripts": {
+      "start": "node --expose-gc index.js"
   },
   "author": "wuyuanyi135@gmail.com",
   "license": "MIT",

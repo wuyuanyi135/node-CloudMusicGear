@@ -6,7 +6,7 @@ var cmg = require('./CMG.js');
 
 
 
-const serverPort = 3412;
+const serverPort = 80;
 
 
 
@@ -15,6 +15,12 @@ app = express();
 // Default : proxy to remoteUrl
 app.use('*', function(req, res){
     var uri = req._parsedUrl;
+    if (!uri.host) {
+        uri.host = req.headers['host'];
+    }
+    if (!uri.protocol) {
+        uri.protocol = 'http';
+    }
     var originalHost = uri.host;
 
     if (req.originalUrl.indexOf('.mp3') !== -1) {
