@@ -321,6 +321,7 @@ function onResponse(res, body, client) {
     client.status(res.statusCode);
     //client.set(res.headers);
     client.send(body);
+    body = null;
 }
 
 module.exports = {

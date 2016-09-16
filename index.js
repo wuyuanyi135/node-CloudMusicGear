@@ -38,10 +38,11 @@ app.use('*', function(req, res){
     //r = request(options, (e, r, d)=>responseHandler(e,r,d,res));
     r = request(options);
     var data = new Buffer([]);
+    // var data = []
     var response;
     req.pipe(r)
         .on('response', (resp) => response = resp)
-        .on('data',  (ndata) => { data =  Buffer.concat([data, ndata]); })
+        .on('data',  (ndata) => { const tmp =  Buffer.concat([data, ndata]); data = null; data = tmp; global.gc(); })
         .on('end', ()=>{cmg.onResponse(response, data,  res)})
         // .pipe(res);
 
