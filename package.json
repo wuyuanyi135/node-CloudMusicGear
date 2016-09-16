@@ -1,0 +1,15 @@
+{
+  "name": "node-gear",
+  "version": "1.0.0",
+  "description": "A node port of https://github.com/EraserKing/CloudMusicGear",
+  "main": "index.js",
+  "scripts": {
+  },
+  "author": "wuyuanyi135@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0",
+    "md5": "^2.2.1",
+    "request": "^2.74.0"
+  }
+}
