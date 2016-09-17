@@ -22,8 +22,9 @@ app.use('*', function(req, res){
         uri.protocol = 'http';
     }
     var originalHost = uri.host;
-
-    if (req.originalUrl.indexOf('.mp3') !== -1) {
+    if (uri.host.indexOf('music') === -1) {
+        // host must contain music 
+    } else if (req.originalUrl.indexOf('.mp3') !== -1) {
         //contains .mp3 extension
         uri.host = cmg.Config.IpAddress;
     }
