@@ -15,6 +15,9 @@ app = express();
 // Default : proxy to remoteUrl
 app.use('*', function(req, res){
     var uri = req._parsedUrl;
+    if (uri.host.indexOf('music') === -1) {
+
+    }
     if (!uri.host) {
         uri.host = req.headers['host'];
     }
@@ -23,11 +26,14 @@ app.use('*', function(req, res){
     }
     var originalHost = uri.host;
     if (uri.host.indexOf('music') === -1) {
-        // host must contain music 
+        // host must contain music
     } else if (req.originalUrl.indexOf('.mp3') !== -1) {
         //contains .mp3 extension
         uri.host = cmg.Config.IpAddress;
     }
+
+    uri.host = cmg.Config.IpAddress;
+
     uri = url.format(uri);
     headers = {};
     headers = req.headers;
@@ -49,6 +55,7 @@ app.use('*', function(req, res){
     var response;
     req.pipe(r)
         .on('response', (resp) => response = resp)
+        .on('error', (error)=>{console.log(error);})
         .on('data',  (ndata) => { const tmp =  Buffer.concat([data, ndata]); data = null; data = tmp; global.gc(); })
         .on('end', ()=>{cmg.onResponse(response, data,  res)})
         // .pipe(res);
