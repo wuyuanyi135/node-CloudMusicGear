@@ -15,9 +15,7 @@ app = express();
 // Default : proxy to remoteUrl
 app.use('*', function(req, res){
     var uri = req._parsedUrl;
-    if (uri.host.indexOf('music') === -1) {
 
-    }
     if (!uri.host) {
         uri.host = req.headers['host'];
     }
