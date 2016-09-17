@@ -177,7 +177,7 @@ function ModifyDetailApi(originalContent) {
 
 function onResponse(res, body, client) {
 
-
+    console.log(`${res.statusCode}\t${res.request.uri.path}`);
     var responseContentType = res.headers["content-type"];
 
     if (responseContentType) {
